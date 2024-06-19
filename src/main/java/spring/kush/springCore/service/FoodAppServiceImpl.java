@@ -50,6 +50,26 @@ public class FoodAppServiceImpl implements FoodAppService {
     }
 
     @Override
+    public void saveMultipleFoodItems(List<FoodAppDTO> foodAppDTO) throws NullPointerException {
+
+        if (foodAppDTO == null) {
+            log.info("ENTER DATA TO SAVE");
+            throw new NullPointerException("NO DATA TO SAVE");
+        }
+
+        if (!foodAppDTO.isEmpty() && foodAppDTO.size() > 1) {
+            List<FoodAppEntity> foodItems = foodAppDTO.stream()
+                    .map(foodAppMapper::mapToEntity)
+                    .collect(Collectors.toList());
+            foodAppRepository.saveAll(foodItems);
+            log.info("SUCCESS");
+        } else {
+            log.info("NO DATA TO SAVE");
+        }
+
+    }
+
+    @Override
     public List<FoodAppDTO> getAllItems() {
         List<FoodAppEntity> foodAppEntities = foodAppRepository.findAll();
         return foodAppEntities.stream()
@@ -86,14 +106,14 @@ public class FoodAppServiceImpl implements FoodAppService {
             throw new NullPointerException("ID NOT FOUND");
         }
 
-        try{
+        try {
             FoodAppEntity foodAppEntity = foodAppRepository.findById(id).orElse(null);
 
             foodAppRepository.deleteById(foodAppEntity.getId());
-            log.info("SUCCESSFULLY DELETE FOOD ID: {}",id);
+            log.info("SUCCESSFULLY DELETE FOOD ID: {}", id);
 
             foodAppMapper.mapToVo(foodAppEntity);
-        }catch (Exception e){
+        } catch (Exception e) {
             log.error("ERROR DELETING FOOD WITH ID {}", id);
             throw new NullPointerException("FOOD NOT FOUND");
         }
@@ -101,11 +121,11 @@ public class FoodAppServiceImpl implements FoodAppService {
     }
 
     @Override
-    public void updateFoodItemsById(FoodAppDTO foodAppDTO){
+    public void updateFoodItemsById(FoodAppDTO foodAppDTO) {
         if (!foodAppRepository.existsById(foodAppDTO.getId()) || foodAppRepository.findById(foodAppDTO.getId()).isEmpty()) {
             throw new NullPointerException("ID NOT FOUND");
         }
-        try{
+        try {
             FoodAppEntity foodAppEntity = foodAppRepository.findById(foodAppDTO.getId()).orElse(null);
 
             foodAppEntity.setId(foodAppDTO.getId());
@@ -115,10 +135,10 @@ public class FoodAppServiceImpl implements FoodAppService {
             foodAppEntity.setSelfPickUp(foodAppDTO.getSelfPickUp());
 
             foodAppRepository.save(foodAppEntity);
-            log.info("SUCCESSFULLY UPDATE FOOD ID: {}",foodAppDTO.getId());
+            log.info("SUCCESSFULLY UPDATE FOOD ID: {}", foodAppDTO.getId());
 
             foodAppMapper.mapToVo(foodAppEntity);
-        }catch (Exception e){
+        } catch (Exception e) {
             log.error("ERROR UPDATING FOOD WITH ID {}", foodAppDTO.getId());
             throw new NullPointerException("FOOD NOT FOUND");
         }

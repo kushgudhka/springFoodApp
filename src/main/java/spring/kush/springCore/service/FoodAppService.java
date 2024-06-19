@@ -8,6 +8,8 @@ public interface FoodAppService{
 
     void saveFoodItems(FoodAppDTO foodAppDTO) throws NullPointerException;
 
+    void saveMultipleFoodItems(List<FoodAppDTO> foodAppDTO) throws NullPointerException;
+
     List<FoodAppDTO> getAllItems() throws NullPointerException;
 
     FoodAppDTO getFoodById(Long id) throws NullPointerException;

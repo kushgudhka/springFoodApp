@@ -9,6 +9,7 @@ import spring.kush.springCore.dto.ResponseDTO;
 import spring.kush.springCore.service.FoodAppService;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/foodItem")
@@ -26,6 +27,18 @@ public class FoodAppController {
     public ResponseEntity<ResponseDTO> createUser(@RequestBody FoodAppDTO foodAppDTO) {
         try{
             foodAppService.saveFoodItems(foodAppDTO);
+            return new ResponseEntity<>(new ResponseDTO(HttpStatus.OK,"Food Item Saved Successfully"), HttpStatus.OK);
+        }catch (NullPointerException e){
+            log.info(e.getMessage());
+            return new ResponseEntity<>(new ResponseDTO(HttpStatus.BAD_REQUEST,"Food Item Saving Failed"), HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @PostMapping("/saveAll")
+    public ResponseEntity<ResponseDTO> createMultipleUser(@RequestBody Map<String, List<FoodAppDTO>> foodAppDTO) {
+        try{
+            List<FoodAppDTO> foodAppDTOList = foodAppDTO.get("foodAppDTO");
+            foodAppService.saveMultipleFoodItems(foodAppDTOList);
             return new ResponseEntity<>(new ResponseDTO(HttpStatus.OK,"Food Item Saved Successfully"), HttpStatus.OK);
         }catch (NullPointerException e){
             log.info(e.getMessage());
