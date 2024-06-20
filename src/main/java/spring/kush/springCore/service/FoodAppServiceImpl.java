@@ -38,6 +38,7 @@ public class FoodAppServiceImpl implements FoodAppService {
 
         if (foodAppDTO.getId() != null
                 && !foodAppDTO.getItemName().isBlank() && !foodAppDTO.getItemName().isEmpty()
+                && !foodAppDTO.getChoice().isBlank() && !foodAppDTO.getChoice().isEmpty()
                 && !foodAppDTO.getTypeOfFood().isBlank() && !foodAppDTO.getTypeOfFood().isEmpty()
                 && foodAppDTO.getPrice() != 0) {
             FoodAppEntity foodAppEntity = foodAppMapper.mapToEntity(foodAppDTO);
@@ -130,9 +131,10 @@ public class FoodAppServiceImpl implements FoodAppService {
 
             foodAppEntity.setId(foodAppDTO.getId());
             foodAppEntity.setItemName(foodAppDTO.getItemName());
-            foodAppEntity.setTypeOfFood(foodAppDTO.getTypeOfFood());
+            foodAppEntity.setChoice(foodAppDTO.getChoice());
             foodAppEntity.setPrice(foodAppDTO.getPrice());
             foodAppEntity.setSelfPickUp(foodAppDTO.getSelfPickUp());
+            foodAppEntity.setTypeOfFood(foodAppDTO.getTypeOfFood());
 
             foodAppRepository.save(foodAppEntity);
             log.info("SUCCESSFULLY UPDATE FOOD ID: {}", foodAppDTO.getId());

@@ -13,9 +13,10 @@ public class FoodAppMapper {
 
         foodAppEntity.setId(foodAppDTO.getId());
         foodAppEntity.setItemName(foodAppDTO.getItemName());
-        foodAppEntity.setTypeOfFood(foodAppDTO.getTypeOfFood());
+        foodAppEntity.setChoice(foodAppDTO.getChoice());
         foodAppEntity.setPrice(foodAppDTO.getPrice());
         foodAppEntity.setSelfPickUp(foodAppDTO.getSelfPickUp());
+        foodAppEntity.setTypeOfFood(foodAppDTO.getTypeOfFood());
 
         return foodAppEntity;
     }
@@ -26,9 +27,10 @@ public class FoodAppMapper {
 
         foodAppDTO.setId(foodAppEntity.getId());
         foodAppDTO.setItemName(foodAppEntity.getItemName());
-        foodAppDTO.setTypeOfFood(foodAppEntity.getTypeOfFood());
+        foodAppDTO.setChoice(foodAppEntity.getChoice());
         foodAppDTO.setPrice(foodAppEntity.getPrice());
         foodAppDTO.setSelfPickUp(foodAppEntity.getSelfPickUp());
+        foodAppDTO.setTypeOfFood(foodAppEntity.getTypeOfFood());
 
         return foodAppDTO;
 

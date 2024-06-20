@@ -19,8 +19,11 @@ public class FoodAppEntity {
     private int price;
 
     @NotNull
-    private String typeOfFood;
+    private String choice;
 
     @NotNull
     private Boolean selfPickUp;
+
+    @NotNull
+    private String typeOfFood;
 }

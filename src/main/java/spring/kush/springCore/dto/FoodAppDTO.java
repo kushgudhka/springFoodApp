@@ -8,8 +8,9 @@ public class FoodAppDTO {
     private Long id;
     private String itemName;
     private int price;
-    private String typeOfFood;
+    private String choice;
     private  Boolean selfPickUp;
+    private String typeOfFood;
 
     public FoodAppDTO(){}
 }
