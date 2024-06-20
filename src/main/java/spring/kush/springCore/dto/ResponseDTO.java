@@ -8,11 +8,13 @@ import org.springframework.http.HttpStatus;
 @ToString
 public class ResponseDTO {
 
-    private int status;
-    private String message;
+	private int status;
 
-    public ResponseDTO(HttpStatus status, String message) {
-        this.status = status.value();
-        this.message = message;
-    }
+	private String message;
+
+	public ResponseDTO(HttpStatus status, String message) {
+		this.status = status.value();
+		this.message = message;
+	}
+
 }

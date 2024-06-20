@@ -1,3 +1,9 @@
+buildscript {
+
+	dependencies {
+		classpath("io.spring.javaformat:spring-javaformat-gradle-plugin:0.0.42")
+	}
+}
 plugins {
 	id 'java'
 	id 'org.springframework.boot' version '3.3.0'
@@ -23,6 +29,10 @@ repositories {
 	mavenCentral()
 }
 
+
+
+
+
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
@@ -38,6 +48,7 @@ dependencies {
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
 
+apply plugin: 'io.spring.javaformat'
 tasks.named('test') {
 	useJUnitPlatform()
 }

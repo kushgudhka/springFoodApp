@@ -8,22 +8,23 @@ import lombok.Data;
 @Data
 public class FoodAppEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
-    @NotNull
-    private String itemName;
+	@NotNull
+	private String itemName;
 
-    @NotNull
-    private int price;
+	@NotNull
+	private int price;
 
-    @NotNull
-    private String choice;
+	@NotNull
+	private String choice;
 
-    @NotNull
-    private Boolean selfPickUp;
+	@NotNull
+	private Boolean selfPickUp;
 
-    @NotNull
-    private String typeOfFood;
+	@NotNull
+	private String typeOfFood;
+
 }

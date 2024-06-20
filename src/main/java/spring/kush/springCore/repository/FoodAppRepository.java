@@ -5,6 +5,8 @@ import spring.kush.springCore.entity.FoodAppEntity;
 
 import java.util.List;
 
-public interface FoodAppRepository extends JpaRepository<FoodAppEntity,Long> {
-    List<FoodAppEntity> findByItemName(String name);
+public interface FoodAppRepository extends JpaRepository<FoodAppEntity, Long> {
+
+	List<FoodAppEntity> findByItemName(String name);
+
 }
